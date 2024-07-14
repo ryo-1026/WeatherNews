@@ -9,9 +9,11 @@ class Weather extends Model
 {
     use HasFactory;
 
+    protected $table = 'weathers';
+
     protected $fillable = [
         'prefecture_id',
-        'diescription',
+        'description',
         'precipitation_probability',
         'temperature',
         'datetime'
