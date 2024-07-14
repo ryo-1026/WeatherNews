@@ -23,7 +23,7 @@
                     <option value="{{ $prefecture->id }}">{{ $prefecture->name }}</option>
                     @endforeach
                 </select>
-                <button class="w-1/2 mt-4 bg-sky-400 border border-black  block mx-auto" type="submit">天気情報を取得</button>
+                <button class="w-1/2 mt-10 bg-neutral-200 border rounded-md border-black px-8 py-2 hover:bg-neutral-400  block mx-auto" type="submit">天気情報を取得</button>
             </form>
         </div>
 

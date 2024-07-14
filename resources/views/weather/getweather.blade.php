@@ -1,3 +1,9 @@
+@php
+
+use Carbon\Carbon;
+
+@endphp
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -9,28 +15,58 @@
 </head>
 
 <body>
-    <h1>{{ $prefecture->name }}の今日・明日の天気</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>日時</th>
-                <th>天気</th>
-                <th>気温</th>
-                <th>降水確率</th>
-            </tr>
-        </thead>
+    <h1 class="w-full text-center text-3xl mt-8">{{ $prefecture->name }}の今日・明日の天気</h1>
+    <table class="border border-black border-2 mt-6 mx-2 mx-aut text-center">
         <tbody>
-            @foreach ($weatherRecords as $weatherRecord)
-            <tr>
-                <td>{{ $weatherRecord->datetime }}</td>
-                <td>{{ $weatherRecord->description }}</td>
-                <td>{{ $weatherRecord->temperature }}°C</td>
-                <td>{{ $weatherRecord->precipitation_probability }}%</td>
+            <tr class="py-4 border border-b border-black">
+                <td class="text-base px-4 py-2 border-b border-r border-black bg-slate-200">
+                    日付
+                </td>
+                @foreach ($weatherRecords as $weatherRecord)
+                <td class="px-2 py-2 border-r border-b border-black bg-slate-200">
+                    {{ Carbon::parse($weatherRecord->datetime)->format('n月j日 G時') }}
+                </td>
+                @endforeach
             </tr>
-            @endforeach
+
+            <tr class="py-4">
+                <td class="text-base py-2 border-b border-r border-black">
+                    天気
+                </td>
+                @foreach ($weatherRecords as $weatherRecord)
+                <td class="px-2 py-2 border-r border-b border-black">
+                    {{ $weatherRecord->description }}
+                </td>
+                @endforeach
+            </tr>
+
+            <tr class="py-4">
+                <td class="text-base py-2 border-b border-r border-black">
+                    気温
+                </td>
+                @foreach ($weatherRecords as $weatherRecord)
+                <td class="px-2 py-2 border-r border-b border-black">
+                    {{ $weatherRecord->temperature }} ℃
+                </td>
+                @endforeach
+            </tr>
+
+            <tr class="py-4">
+                <td class="text-base py-2 border-b border-r border-black">
+                    降水<br>確率
+                </td>
+                @foreach ($weatherRecords as $weatherRecord)
+                <td class=" px-2 py-2 border-r border-b border-black">
+                    {{ $weatherRecord->precipitation_probability }} %
+                </td>
+                @endforeach
+            </tr>
         </tbody>
     </table>
-    <a href="{{ url('/') }}">戻る</a>
+    <div class="text-center mt-10">
+        <a class="bg-neutral-200 border rounded-md border-black px-8 py-2 hover:bg-neutral-400 " href="{{ url('/') }}">戻る</a>
+    </div>
+
 </body>
 
 </html>
