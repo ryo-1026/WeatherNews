@@ -35,6 +35,10 @@ class WeatherController extends Controller
             ->orderBy('datetime', 'asc')
             ->get();
 
+        //weatherテーブルに取得したデータが今日以外の場合、テーブルデータを削除する
+        $deleteRecords = Weather::where('prefecture_id', $prefecture->id)
+            ->whereDate('created_at', '<>', $today)
+            ->delete();
 
         //データベースにない場合APIを利用して天気データを取得する
         if ($weatherRecords->isEmpty()) {
