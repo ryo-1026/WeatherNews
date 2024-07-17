@@ -15,10 +15,9 @@ use Carbon\Carbon;
 </head>
 
 <body>
-    <section class="text-center w-full px-2">
-        <h1 class="w-full text-center text-3xl mt-8">{{ $prefecture->name }}の今日・明日の天気</h1>
-
-        <table id="large" class="hidden border border-black border-2 mt-6 mx-2 px-2 w-[1200px] mx-auto">
+    <h1 class="w-full text-center text-3xl mt-8">{{ $prefecture->name }}の今日・明日の天気</h1>
+    <div id="large" class="hidden text-center w-full px-2">
+        <table class="border border-black border-2 mt-6 mx-2 px-2 w-[1200px] mx-auto">
             <tbody class="w-full">
                 <tr class="py-4 border border-b border-black">
                     <td class="text-base px-4 py-2 border-b border-r border-black bg-slate-200">
@@ -67,10 +66,13 @@ use Carbon\Carbon;
                 </tr>
             </tbody>
         </table>
-
-        <!-- レスポンンシブデザインstart -->
-
-        <table id="middle" class="hidden border border-black border-2 mt-6 mx-2 px-2 w-full mx-auto">
+        <div class="text-center my-10">
+            <a class="bg-neutral-200 border rounded-md border-black px-8 py-2 hover:bg-neutral-400 " href="{{ url('/') }}">戻る</a>
+        </div>
+    </div>
+    <!-- レスポンンシブデザインstart -->
+    <div id="middle" class="hidden px-2">
+        <table class="border border-black border-2 mt-6 mx-2 px-2 w-full mx-auto">
             <thead>
                 <tr class="bg-slate-200">
                     <th class="text-base py-2 border-b border-r border-black">日時</th>
@@ -93,13 +95,12 @@ use Carbon\Carbon;
                 @endforeach
             </tbody>
         </table>
-
-        <!-- レスポンシブデザインend -->
-
         <div class="text-center my-10">
             <a class="bg-neutral-200 border rounded-md border-black px-8 py-2 hover:bg-neutral-400 " href="{{ url('/') }}">戻る</a>
         </div>
-    </section>
+    </div>
+
+    <!-- レスポンシブデザインend -->
 
     <script>
         function responsiveTable() {
